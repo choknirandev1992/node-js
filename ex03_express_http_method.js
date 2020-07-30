@@ -1,5 +1,10 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
+
+app.use(bodyParser.urlencoded({
+  extended : false
+}));
 
 //HTTP GET (call-back function standard javascript)
 app.get('/', function(req, res) {
@@ -17,7 +22,17 @@ app.get('/login', (req, res) => {
 });
 
 //http POST (call-back function lambda)
-app.get('/post', (req, res) => {
+app.post('/post', (req, res) => {
+    res.end('username: '+ req.body.username + " password: "+ req.body.password);
+});
+
+//http PUT (call-back function lambda)
+app.put('/post', (req, res) => {
+    res.end('username: '+ req.body.username + " password: "+ req.body.password);
+});
+
+//http DELETE (call-back function lambda)
+app.delete('/post', (req, res) => {
     res.end('username: '+ req.body.username + " password: "+ req.body.password);
 });
 
